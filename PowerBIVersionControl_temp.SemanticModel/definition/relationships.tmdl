@@ -1,0 +1,5 @@
+relationship cbaf9eb4-18ea-42b2-b826-03f562457212
+	joinOnDateBehavior: datePartOnly
+	fromColumn: powerbi_sales_dataset.OrderDate
+	toColumn: LocalDateTable_61e60773-9625-4750-99f0-6049f46822fe.Date
+

@@ -1,0 +1,91 @@
+table powerbi_sales_dataset
+	lineageTag: 0ae95b7b-6907-4b73-b803-07c703db64e9
+
+	column OrderID
+		dataType: int64
+		formatString: 0
+		lineageTag: 0178ec91-64c6-4c0f-a75a-da1841c7a318
+		summarizeBy: count
+		sourceColumn: OrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 86980548-73ef-4f8c-8a91-7ab574807152
+		summarizeBy: none
+		sourceColumn: OrderDate
+
+		variation Variation
+			isDefault
+			relationship: cbaf9eb4-18ea-42b2-b826-03f562457212
+			defaultHierarchy: LocalDateTable_61e60773-9625-4750-99f0-6049f46822fe.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Region
+		dataType: string
+		lineageTag: 56b588af-94fe-44b0-9348-680647634faa
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product
+		dataType: string
+		lineageTag: 50cfc528-4613-452d-af4c-8e759013cfc7
+		summarizeBy: none
+		sourceColumn: Product
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: d0e3e766-950a-44cf-ac91-a119ec414b1b
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sales
+		dataType: int64
+		formatString: 0
+		lineageTag: 1a983e09-4af4-4d4d-a74c-3508af9027d6
+		summarizeBy: sum
+		sourceColumn: Sales
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 576d58c5-b4e0-4f5b-a1ad-f26283083f35
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Profit
+		dataType: int64
+		formatString: 0
+		lineageTag: b0d9b361-a881-4e10-81b9-946a4b65be13
+		summarizeBy: sum
+		sourceColumn: Profit
+
+		annotation SummarizationSetBy = Automatic
+
+	partition powerbi_sales_dataset = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\E75AZID\Downloads\powerbi_sales_dataset.csv"),[Delimiter=",", Columns=8, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"OrderID", Int64.Type}, {"OrderDate", type date}, {"Region", type text}, {"Product", type text}, {"Category", type text}, {"Sales", Int64.Type}, {"Quantity", Int64.Type}, {"Profit", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

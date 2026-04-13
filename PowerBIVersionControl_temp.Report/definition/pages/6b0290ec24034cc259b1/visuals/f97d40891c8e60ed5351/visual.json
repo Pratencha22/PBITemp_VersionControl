@@ -1,0 +1,77 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "f97d40891c8e60ed5351",
+  "position": {
+    "x": 920.32203741724152,
+    "y": 0,
+    "z": 1,
+    "height": 145.51292994071375,
+    "width": 345.82943089805997,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "powerbi_sales_dataset"
+                    }
+                  },
+                  "Property": "OrderID"
+                }
+              },
+              "queryRef": "powerbi_sales_dataset.OrderID",
+              "nativeQueryRef": "OrderID",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "290cef1f99b890412482",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "powerbi_sales_dataset"
+              }
+            },
+            "Property": "OrderID"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}
